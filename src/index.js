@@ -76,8 +76,14 @@ function QuoteApp() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="list">
-        {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            style={{
+              backgroundColor: snapshot.isDraggingOver ? "blue" : "grey",
+            }}
+            {...provided.droppableProps}
+          >
             <QuoteList quotes={state.quotes} />
             {provided.placeholder}
           </div>
